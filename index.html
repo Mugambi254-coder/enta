@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bestie Memories 💙</title>
+
+<style>
+iframe{
+    width:90%;
+    max-width:900px;
+    height:450px;
+    border:none;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+section p{
+    margin:15px 0;
+    font-size:1.1rem;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:linear-gradient(135deg,#667eea,#764ba2);
+color:white;
+overflow-x:hidden;
+}
+
+section{
+padding:80px 20px;
+text-align:center;
+}
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+.hero h1{
+font-size:4rem;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:1.3rem;
+max-width:700px;
+}
+
+.title{
+font-size:2.5rem;
+margin-bottom:30px;
+}
+
+.card{
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(10px);
+padding:25px;
+border-radius:20px;
+margin:15px;
+}
+
+.memory-cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+max-width:1200px;
+margin:auto;
+}
+
+.slider{
+max-width:900px;
+margin:auto;
+}
+
+.slide{
+    display:none;
+    width:100%;
+    height:500px;
+    object-fit:contain;
+    border-radius:20px;
+    background:#000;
+}
+
+.active{
+display:block;
+}
+
+.timeline{
+max-width:800px;
+margin:auto;
+text-align:left;
+}
+
+.timeline-item{
+background:rgba(255,255,255,.15);
+padding:20px;
+border-radius:15px;
+margin-bottom:20px;
+}
+
+button{
+padding:15px 25px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+font-size:1rem;
+margin-top:10px;
+}
+
+input,textarea{
+width:90%;
+max-width:600px;
+padding:12px;
+border:none;
+border-radius:10px;
+margin-top:10px;
+}
+
+iframe{
+border:none;
+border-radius:20px;
+}
+
+.floating{
+position:fixed;
+top:-20px;
+pointer-events:none;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
+}
+
+#memoryOutput{
+margin-top:20px;
+font-size:1.3rem;
+font-weight:bold;
+}
+
+#friendshipCounter{
+font-size:1.5rem;
+margin-top:20px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:2.5rem;
+}
+
+.slide{
+height:300px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<h1>💙 Our Memories 💙</h1>
+
+<p>
+A collection of our friendship,
+crazy adventures,
+inside jokes,
+and unforgettable moments.
+</p>
+
+<div id="friendshipCounter"></div>
+
+</section>
+
+<section>
+
+<h2 class="title">🎵 Our Fav Playlist😊😊😊</h2>
+
+<audio controls loop>
+<source src="stat/audio/R. City - Locked Away (Lyrics) ft. Adam Levine(MP3_160K).mp3.mp3" type="audio/mpeg">
+</audio>
+
+</section>
+
+<section>
+
+<h2 class="title">📸 Our Memories😊</h2>
+
+<div class="slider">
+
+<img class="slide active" src="static/images/WhatsApp Image 2026-06-03 at 9.23.08 AM(1).jpeg">
+<img class="slide" src="static/images/WhatsApp Image 2026-06-03 at 9.23.08 AM(2).jpeg">
+<img class="slide" src="static/images/WhatsApp Image 2026-06-03 at 9.23.08 AM(3).jpeg">
+<img class="slide" src="static/images/WhatsApp Image 2026-06-03 at 9.23.08 AM.jpeg">
+<img class="slide" src="static/images/WhatsApp Image 2026-06-03 at 10.56.54 AM(1).jpeg">
+<img class="slide" src="static/images/WhatsApp Image 2026-06-03 at 10.56.54 AM.jpeg">
+<img class="slide" src="static/images/WhatsApp Image 2026-06-03 at 10.58.24 AM.jpeg">
+<img class="slide" src="static/images/WhatsApp Image 2026-06-03 at 10.58.24 AM.jpeg">
+<img class="slide" src="static/images/WhatsApp Image 2026-06-03 at 10.58.25 AM(1).jpeg">
+<img class="slide" src="static/images/WhatsApp Image 2026-06-03 at 10.58.25 AM(2).jpeg">
+<img class="slide" src="static/images/WhatsApp Image 2026-06-03 at 10.58.25 AM(3).jpeg">
+<img class="slide" src="static/images/WhatsApp Image 2026-06-03 at 10.58.25 AM.jpeg">
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title">💌 A Letter To you</h2>
+
+<div class="card">
+
+<p id="letter"></p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title">🌟 Reasons You're Amazing</h2>
+
+<div class="memory-cards">
+
+<div class="card">😊 You always make me laugh.</div>
+<div class="card">💙 You genuinely care.</div>
+<div class="card">🎉 You make every moment fun.</div>
+<div class="card">🌟 You inspire me.</div>
+<div class="card">🤝 You're trustworthy.</div>
+<div class="card">😂 We share the best jokes.</div>
+<div class="card">✨ You support my dreams.</div>
+<div class="card">🎈 You bring positive energy.</div>
+<div class="card">🌍 You're always there.</div>
+<div class="card">💎 You're one of a kind.</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title">🕰 Friendship Timeline</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<h3>✨ First Meeting</h3>
+<p>To me I can say that we met on 31st January 2026.But kwako ulisema we met 30th kwa njia but anyway bora tulimeet ama aje😂</p>
+</div>
+
+<div class="timeline-item">
+<h3>😂 Funniest Moment</h3>
+<p>Vita zetu😂</p>
+<p>Us being artists and dancers😮‍💨</p>
+<p>T/D games</p>
+<p>Nikikufunza kuendesha bike😂</p>
+<p>Nikikubebembeleza uache kujam na kulia😂</p>
+</div>
+
+<div class="timeline-item">
+<h3>🚗 2026 Adventures</h3>
+<p>31st January Nyeri Hills.</p>
+<p>14th February Zaina Falls</p>
+<p>20th April Kinunga Stadium</p>
+<p>20th March & 7th April Lalanasi</p>
+<p>3rd April Falls</p>
+</div>
+
+<div class="timeline-item">
+<h3>💙 Today</h3>
+<p>We keep every moments in our minds for continuation when we come back😂😂</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<section>
+
+
+<h2 class="title">🫙 Memory Jar</h2>
+
+<button onclick="memoryJar()">
+Reveal A Memory "CLICK ME!"
+</button>
+
+<p id="memoryOutput"></p>
+
+</section>
+
+<section>
+
+<h2 class="title">🎆 Friendship Celebration</h2>
+
+<button onclick="celebrate()">
+Celebrate Friendship "CLICK ME!"🎉
+</button>
+
+</section>
+
+<section>
+
+<h2 class="title">✍️ Leave A Message</h2>
+
+<input
+type="text"
+id="guestName"
+placeholder="Your Name">
+
+<br>
+
+<textarea
+id="guestMessage"
+rows="5"
+placeholder="Write your message here...and send a screenshort to me after you have submitted😂😘🥰">
+</textarea>
+
+<br>
+
+<button onclick="saveMessage()">
+Submit Message
+</button>
+
+<div id="messages"></div>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+
+/* Friendship Counter */
+
+const startDate=new Date("2023-01-01");
+
+const today=new Date();
+
+const days=Math.floor(
+(today-startDate)/(1000*60*60*24)
+);
+
+document.getElementById("friendshipCounter").innerHTML=
+"💙 Friends for "+days+" amazing days";
+
+/* Slideshow */
+
+let slides=document.querySelectorAll(".slide");
+
+let current=0;
+
+setInterval(()=>{
+
+slides[current].classList.remove("active");
+
+current=(current+1)%slides.length;
+
+slides[current].classList.add("active");
+
+},3000);
+
+/* Typewriter Letter */
+
+const text=
+"Thank you for all the laughter, support, memories, adventures and friendship. Every moment we've shared has made life more colorful. No matter where life takes us, I'll always appreciate the memories we've created together. 💙";
+
+let i=0;
+
+function write(){
+
+if(i<text.length){
+
+document.getElementById("letter").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(write,40);
+
+}
+
+}
+
+write();
+
+/* Memory Jar */
+
+const memories=[
+
+"😂 That day we fought untill we were exhausted.",
+
+"📸 Taking random selfies together.",
+
+"🎉 Celebrating achievements together.",
+
+"🍕 Sharing food and stories.",
+
+"🚗 Going on adventures together.",
+
+"💙 Being there during difficult times."
+
+];
+
+function memoryJar(){
+
+let random=Math.floor(Math.random()*memories.length);
+
+document.getElementById("memoryOutput").innerHTML=
+memories[random];
+
+}
+
+/* Guestbook */
+
+function saveMessage(){
+
+let name=document.getElementById("guestName").value;
+let msg=document.getElementById("guestMessage").value;
+
+if(name===""||msg==="") return;
+
+let div=document.createElement("div");
+
+div.className="card";
+
+div.innerHTML="<strong>"+name+"</strong><br>"+msg;
+
+document.getElementById("messages").appendChild(div);
+
+document.getElementById("guestName").value="";
+document.getElementById("guestMessage").value="";
+
+}
+
+/* Confetti */
+
+function celebrate(){
+
+confetti({
+particleCount:300,
+spread:180,
+origin:{y:0.6}
+});
+
+}
+
+/* Floating Emojis */
+
+function createEmoji(){
+
+const emojis=[
+"💙",
+"✨",
+"🌟",
+"🎈",
+"😊"
+];
+
+let item=document.createElement("div");
+
+item.className="floating";
+
+item.innerHTML=
+emojis[Math.floor(Math.random()*emojis.length)];
+
+item.style.left=Math.random()*100+"vw";
+
+item.style.fontSize=
+(20+Math.random()*20)+"px";
+
+item.style.animationDuration=
+(5+Math.random()*5)+"s";
+
+document.body.appendChild(item);
+
+setTimeout(()=>{
+item.remove();
+},10000);
+
+}
+
+setInterval(createEmoji,400);
+
+</script>
+
+</body>
+</html>
